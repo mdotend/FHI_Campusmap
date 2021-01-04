@@ -25,7 +25,7 @@ SECRET_KEY = '9#jt^_(93bpuceq-)^eas-1=lbi2g-_m&u!9cv$+pnjp90%a@a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "fhi-map.mendr.es" ]
+ALLOWED_HOSTS = [ "fhi-map.mendr.es", "127.0.0.1" ]
 
 
 # Application definition
