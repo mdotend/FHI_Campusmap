@@ -1,9 +1,39 @@
 body {
-    /* background-color: #CEF89D; */
-    background-image: linear-gradient(to right, #CEF89D, #D3EB21);
+    background-color: #F2F2F2;
+    /* background-image: linear-gradient(to right, #CEF89D, #D3EB21); */
 }
 
 .marged {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.tab_focused {
+    background-color: #BDBDBD;
+    color: #2E2E2E;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+}
+
+.tab_background {
+    background-color: #2E2E2E;
+    color: #BDBDBD;
+}
+
+.card-img-top {
+    border-radius: 0 0 50% 50%;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.footer{
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
