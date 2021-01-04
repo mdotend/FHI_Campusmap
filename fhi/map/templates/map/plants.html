@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+{% block content %}
+<head>
+  <title>Pflanzenübersicht</title>
+</head>
+<body>
+  {% load static %}
+  <h1> Diese Pflanzen sind auf dem FHI Campus zu finden</h1>
+  <div class="container">
+      <div class="row">
+          {% for plant in plant_types %}
+              <div class="col-sm">
+                  <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{% static 'plants/' %}{{ plant.name }}.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <p class="card-text">{{ plant.short_description }}</p>
+                        <div class="row justify-content-center">
+                          <a href="../?display={{ plant.name}}" class="btn btn-primary marged">auf Karte</a>
+                          <a href="?name={{ plant.name }}" class="btn btn-primary marged">Mehr Infos</a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+</body>
+{% endblock %}

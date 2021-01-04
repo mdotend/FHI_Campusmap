@@ -1,0 +1,9 @@
+body {
+    /* background-color: #CEF89D; */
+    background-image: linear-gradient(to right, #CEF89D, #D3EB21);
+}
+
+.marged {
+    margin-left: 10px;
+    margin-right: 10px;
+}

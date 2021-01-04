@@ -1,0 +1,70 @@
+{% extends './base.html' %}
+{% block content %}
+{% load leaflet_tags %}
+
+<style>
+
+    .leaflet-container {
+        width: 100%;
+        height: 750pt;
+        margin: 25px 75px 100px;
+    }
+
+</style>
+
+<script>
+    window.addEventListener("map:init", function (e) {
+        var map = e.detail.map;
+        map.on('click', function(e) {
+            alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+        }); //alert with long/lat on click        
+        var area_points = "{{ waypoint_list }}";
+        area_points = JSON.parse(area_points.replace(/&quot;/ig,'"'));
+        if (area_points){
+            for ( var i = 0; i<="{{ max_area_id }}"; i++){
+                poly = [];
+                area_points.forEach(waypoint => {
+                    if (waypoint.fields.area == i){
+                        poly.push([waypoint.fields.long, waypoint.fields.lat])
+                    }
+                });
+                L.polygon(poly).addTo(map);
+            }
+        }
+        var plant_points = "{{ plant_list }}";
+        plant_points = JSON.parse(plant_points.replace(/&quot;/ig,'"'));
+        var control = L.control.layers({}, {}, {"collapsed": false});
+        if (plant_points){
+            for ( var i = 0; i<="{{ max_planttype_id }}"; i++){
+                group = [];
+                plant_name = "";
+                plant_points.forEach(plant => {
+                    if (plant.type == i){
+                        var marker = new L.marker([plant.long, plant.lat]);
+                        group.push(marker);
+                        marker.bindPopup(`<a href="plants/?name=${plant.name}" class="btn btn-primary marged" style="color: white;">${plant.name}</a>`, {closeButton: true});
+                        plant_name = plant.name;
+                    }
+                });
+                if(group.length > 0 && plant_name != ""){
+                    plantGroup = L.layerGroup(group);
+                    if ("{{ focus_plants }}".search(plant_name) != -1 || "{{ focus_plants }}" == []){
+                        plantGroup.addTo(map);
+                    }
+                    control.addOverlay(plantGroup, plant_name);
+                }
+            }
+        }
+        control.addTo(map);
+    }, false);
+</script>
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <title>FHI Nachhaltigkeitskarte</title>
+</head>
+
+<body>
+    {% leaflet_map "map"%}
+</body>
+{% endblock %}
