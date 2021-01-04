@@ -1,0 +1,7 @@
+Django==3.1
+psycopg2
+django-leaflet
+django-geojson
+numpy
+gdal==2.4.0
+Pillow

@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: fhi
+      POSTGRES_DB: map
+      POSTGRES_PASSWORD: aRi1oogheenaisom
+    volumes:
+      - pgdata:/var/lib/posgresql/data
+  web:
+    build: .
+    command: python fhi/manage.py runserver 0.0.0.0:8000
+    volumes:
+        - .:/usr/src/app
+    ports:
+        - "1234:8000"
+    depends_on:
+      - db
+volumes:
+  pgdata:
