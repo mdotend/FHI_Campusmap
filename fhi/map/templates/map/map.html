@@ -40,7 +40,15 @@
                 plant_name = "";
                 plant_points.forEach(plant => {
                     if (plant.type == i){
-                        var marker = new L.marker([plant.long, plant.lat]);
+                        var customIcon = new L.Icon({
+                            iconUrl: `/static/marker/marker-icon-${plant.color}.png`,
+                            shadowUrl: '/static/marker/marker-shadow.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [1, -34],
+                            shadowSize: [41, 41]
+                        });
+                        var marker = new L.marker([plant.long, plant.lat], {icon: customIcon});
                         group.push(marker);
                         marker.bindPopup(`<a href="plants/?name=${plant.name}" class="btn btn-primary marged" style="color: white;">${plant.name}</a>`, {closeButton: true});
                         plant_name = plant.name;
@@ -65,6 +73,7 @@
 </head>
 
 <body>
+    <script>changeActiveTab("tab_map")</script>
     {% leaflet_map "map"%}
 </body>
 {% endblock %}
