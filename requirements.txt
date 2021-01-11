@@ -5,3 +5,4 @@ django-geojson
 numpy
 gdal==2.4.0
 Pillow
+python-dotenv
