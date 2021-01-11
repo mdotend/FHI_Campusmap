@@ -8,31 +8,48 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" />
   </head>
   <body>
-    <div class="container">
-      <div class="col-sm"></div>
+    <script>
+      function changeActiveTab(pTab){
+        var active_tabs = document.getElementsByClassName("tab_focused");
+        for (var i = 0; i<active_tabs.length;i++){
+          active_tabs[i].classList.replace("tab_focused","tab_background");
+        }
+        document.getElementById(pTab).classList.replace("tab_background","tab_focused");
+      }
+    </script>
+    <div class="container-md">
+      <!-- <div class="col-sm"></div> -->
       <div class="col-md-auto">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">FHI Nachhaltigkeitskarte</a>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <!-- <a class="navbar-brand tab_focused navbar-nav" href="/">FHI Nachhaltigkeitskarte</a> -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <a class="nav-item nav-link" href="plants">Pflanzen</a>
+            <ul class="navbar-nav mr-auto">
+              <li><a class="nav-item nav-link tab_focused navbar-nav" id="tab_map" href="/">FHI-Nachhaltigkeitskarte</a></li>
+              <li><a class="nav-item nav-link tab_background navbar-nav" id="tab_plant" href="plants">Pflanzen</a></li>
+            </ul>
           </div>
         </nav>
 
         <div id="content", name="content", class="main">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center marged">
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
       </div>
-      <div class="col-sm"></div>
+      <!-- <div class="row footer">
+        abc
+      </div> -->
+      <!-- <div class="col-sm"></div> -->
     </div>
-      
+
+
+
+    <script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/popper.min.js' %}"></script>
-    <script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
   </body>
 </html>
