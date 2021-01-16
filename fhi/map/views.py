@@ -30,7 +30,7 @@ def map(request):
         new_plant = {
             'type': str(plant.plant.genus.pk),
             'name': str(plant.plant.genus.name),
-            'color': "yellow",
+            'color': str(plant.plant.genus.marker_color),
             'lat': plant.lat,
             'long': plant.long
         }
