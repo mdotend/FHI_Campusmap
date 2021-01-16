@@ -28,9 +28,9 @@ def map(request):
     plantlist = []
     for plant in plants:
         new_plant = {
-            'type': str(plant.plant.genus.pk),
-            'name': str(plant.plant.genus.name),
-            'color': str(plant.plant.genus.marker_color),
+            'type': str(plant.plant.pk),
+            'name': str(plant.plant.name),
+            'color': str(plant.plant.marker_color),
             'lat': plant.lat,
             'long': plant.long
         }

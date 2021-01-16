@@ -6,20 +6,12 @@ class Waypoint(models.Model):
     long = models.FloatField()
     lat = models.FloatField()
     area = models.ForeignKey('Area', on_delete=models.CASCADE, blank=True, null=True)
-    plant = models.ForeignKey('Plant', on_delete=models.CASCADE, blank=True, null=True)
+    plant = models.ForeignKey('PlantType', on_delete=models.CASCADE, blank=True, null=True)
 
 class Area(models.Model):
     name = models.CharField(max_length=25)
     class Meta:
         verbose_name_plural = "Areas"
-    def __str__(self):
-        return self.name
-
-class Plant(models.Model):
-    name = models.CharField(max_length=25)
-    genus = models.ForeignKey('PlantType', on_delete=models.CASCADE, blank=True, null=True)
-    class Meta:
-        verbose_name_plural = "Plants"
     def __str__(self):
         return self.name
 
