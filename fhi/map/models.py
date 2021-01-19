@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 import os
 
 # Create your models here.
@@ -7,6 +8,7 @@ class Waypoint(models.Model):
     lat = models.FloatField()
     area = models.ForeignKey('Area', on_delete=models.CASCADE, blank=True, null=True)
     plant = models.ForeignKey('PlantType', on_delete=models.CASCADE, blank=True, null=True)
+
 
 class Area(models.Model):
     name = models.CharField(max_length=25)
@@ -33,3 +35,9 @@ class PlantType(models.Model):
         verbose_name_plural = "PlantTypes"
     def __str__(self):
         return self.name
+
+
+class WaypointForm(ModelForm):
+    class Meta:
+        model = Waypoint
+        fields = ['long', 'lat', 'plant', 'area']
