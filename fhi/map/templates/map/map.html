@@ -1,23 +1,13 @@
 {% extends './base.html' %}
+{% load icons %}
+{% load static %}
 {% block content %}
 {% load leaflet_tags %}
 
-<style>
-
-    .leaflet-container {
-        width: 100%;
-        height: 750pt;
-        margin: 25px 75px 100px;
-    }
-
-</style>
-
 <script>
     window.addEventListener("map:init", function (e) {
-        var map = e.detail.map;
-        map.on('click', function(e) {
-            alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-        }); //alert with long/lat on click        
+        var map = e.detail.map;  
+        
         var area_points = "{{ waypoint_list }}";
         area_points = JSON.parse(area_points.replace(/&quot;/ig,'"'));
         if (area_points){
@@ -25,7 +15,7 @@
                 poly = [];
                 area_points.forEach(waypoint => {
                     if (waypoint.fields.area == i){
-                        poly.push([waypoint.fields.long, waypoint.fields.lat])
+                        poly.push([waypoint.fields.lat,waypoint.fields.long])
                     }
                 });
                 L.polygon(poly).addTo(map);
@@ -48,7 +38,7 @@
                             popupAnchor: [1, -34],
                             shadowSize: [41, 41]
                         });
-                        var marker = new L.marker([plant.long, plant.lat], {icon: customIcon});
+                        var marker = new L.marker([plant.lat,plant.long], {icon: customIcon});
                         group.push(marker);
                         marker.bindPopup(`<a href="plants/?name=${plant.name}" class="btn btn-primary marged" style="color: white;">${plant.name}</a>`, {closeButton: true});
                         plant_name = plant.name;
@@ -64,15 +54,62 @@
             }
         }
         control.addTo(map);
+        console.log('{{ edit_mode }}')
+        if ('{{ edit_mode }}' == "True"){
+            L.easyButton('<b>X</b>', function(){
+                window.open("/", "_self");
+            }).addTo(map);
+            
+            map.on('click', function(e) {
+                var marker = new L.marker([e.latlng.lat, e.latlng.lng], {draggable:true});
+                updatePopup(marker);
+                marker.addTo(map);
+
+                marker.on('dragend', function (e) {
+                    updatePopup(marker);
+                });
+            });  
+            function updatePopup(marker) {
+                marker.bindPopup(`<form action="" method="post">{% csrf_token %}{{ newPlantForm.non_field_errors }}
+                                <div class="fieldWrapper">
+                                    {{ newPlantForm.lat.errors }}
+                                    <input type="hidden" name="lat" step="any" required="" id="id_lat" value=${marker.getLatLng().lat}>
+                                </div>
+                                <div class="fieldWrapper">
+                                    {{ newPlantForm.long.errors }}
+                                    <input type="hidden" name="long" step="any" required="" id="id_long" value=${marker.getLatLng().lng}>
+
+                                </div>
+                                <div class="fieldWrapper">
+                                    {{ newPlantForm.plant.error }}
+                                    <label for="id_plant">Pflanze</label> {{ newPlantForm.plant }}
+                                </div>
+                                <div class="fieldWrapper">
+                                    {{ newPlantForm.area.error }}
+                                    <label for="id_area">Gebiet</label> {{ newPlantForm.area }}
+                                </div>
+                                <input type="submit" value="Hinzufügen" class="btn btn-primary"/>
+                            </form>`, 
+                            {closeButton: true}
+                );
+            }
+        }
+        else{
+            L.easyButton('<img src="../static/icons/Edit_icon_(the_Noun_Project_30184).svg" width="130%">', function(){
+                window.open("/?edit", "_self");
+            }).addTo(map);
+        }
     }, false);
 </script>
 <head>
     {% leaflet_js %}
     {% leaflet_css %}
+    <link rel="stylesheet" href="{% static '/css/easybutton.css' %}">
     <title>FHI Nachhaltigkeitskarte</title>
 </head>
 
 <body>
+    <script src="{% static '/js/easybutton.js' %}"></script>    
     <script>changeActiveTab("tab_map")</script>
     {% leaflet_map "map"%}
 </body>
