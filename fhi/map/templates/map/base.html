@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" />
   </head>
   <body>
-    <script src="{% static '/js/tabcontrol.js' %}"></script>
+    <script src="{% static '/js/focuscontrol.js' %}"></script>
     <div class="container-md wrapper">
       <!-- <div class="col-sm"></div> -->
       <div class="col-md-auto">
@@ -31,19 +31,17 @@
                 {% endblock %}
             </div>
         </div>
-        <div class="row footer marged">
-          <div class="column">
-            Nutzpflanzenübersicht auf dem Gelände des Franz-Haber-Instituts
+        <footer class="mt-auto row footer marged">
+          <div class="column col-sm-6" style="text-align: left;">
             <a class="invisble" href="/">Nutzpflanzenkarte</a></br>
             <a class="invisble" href="/plants">Pflanzenübersicht</a>
           </div>
-          <div class="column">
+          <div class="column col-sm-6" style="text-align: right;">
             Copyright © 2021 Marcel Endres</br>
             Content on <a href="https://github.com/mdotend/FHI_Campusmap">Github</a>
           </div>
-        </div>
+        </footer>
       </div>
-      <!-- <div class="col-sm"></div> -->
     </div>
 
 
