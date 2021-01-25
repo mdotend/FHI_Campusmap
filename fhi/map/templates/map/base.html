@@ -9,7 +9,7 @@
   </head>
   <body>
     <script src="{% static '/js/tabcontrol.js' %}"></script>
-    <div class="container-md">
+    <div class="container-md wrapper">
       <!-- <div class="col-sm"></div> -->
       <div class="col-md-auto">
         <nav class="navbar navbar-expand-md navbar-light">
@@ -19,21 +19,30 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-              <li><a class="nav-item nav-link tab_focused navbar-nav" id="tab_map" href="/">FHI-Nachhaltigkeitskarte</a></li>
-              <li><a class="nav-item nav-link tab_background navbar-nav" id="tab_plant" href="plants">Pflanzen</a></li>
+              <li><a class="nav-item nav-link tab_focused navbar-nav" id="tab_map" href="/">FHI-Nutzpflanzenkarte</a></li>
+              <li><a class="nav-item nav-link tab_background navbar-nav" id="tab_plant" href="/plants">Pflanzen</a></li>
             </ul>
           </div>
         </nav>
 
-        <div id="content", name="content", class="content">
+        <div id="content", name="content", class="content wrapper">
             <div class="row justify-content-center marged">
                 {% block content %}
                 {% endblock %}
             </div>
+
         </div>
-      </div>
-      <div class="row footer">
-        abc
+        <div class="row footer marged">
+          <div class="column">
+            Nutzpflanzenübersicht auf dem Gelände des Franz-Haber-Instituts
+            <a href>Nutzpflanzenkarte</a>
+            <a href>Pflanzenübersicht</a>
+          </div>
+          <div class="column">
+            Copyright © 2021 Marcel Endres</br>
+            Content on <a href="https://github.com/mdotend/FHI_Campusmap">Github</a>
+          </div>
+        </div>
       </div>
       <!-- <div class="col-sm"></div> -->
     </div>
