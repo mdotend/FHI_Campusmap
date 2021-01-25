@@ -31,7 +31,7 @@ def map(request):
                 if param == "edit":
                     edit = True
     except:
-        print("no query")
+        noQuery = True
     waypoints = Waypoint.objects.filter(area__isnull=False)
     plants = Waypoint.objects.filter(plant__isnull=False).select_related('plant')
     template = loader.get_template('map/map.html')
@@ -58,9 +58,22 @@ def map(request):
     return HttpResponse(template.render(context, request))
 
 def plants(request):
-
+    focus_cards=""
+    try:
+        uri,query = request.get_full_path().split("?")
+        params = query.split(",")
+        for param in params:
+            try:
+                key,value = param.split("=")
+                if key == "name" and value:
+                    focus_cards+=(str(value))+","
+            except:
+                error = True
+    except:
+        noQuery = True
     template = loader.get_template('map/plants.html')
     context = {
         'plant_types': PlantType.objects.all(),
+        'focus_cards': str(focus_cards),
     }
     return HttpResponse(template.render(context, request))
