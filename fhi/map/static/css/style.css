@@ -24,13 +24,13 @@ body {
 }
 
 .tab_focused {
-    background-color: #eeeeee;
-    color: #BBBBBB;
+    background-color: #006C66;
+    color: #d1d1d1;
 }
 
 .tab_background {
-    background-color: #BBBBBB;
-    color: #3d3c3c;
+    background-color: #00312f;
+    color: #f3f3f3;
 }
 
 .card {
@@ -54,7 +54,7 @@ body {
 .card-focused {
     border: 10px;
     border-style: double;
-    border-color: #BBBBBB;
+    border-color: #006C66;
 }
 
 .content {
@@ -66,8 +66,8 @@ body {
 
 .footer{
     padding: 10px 30px;
-    background: #bbbbbb;
-    color: #3d3c3c;
+    background: #006C66;
+    color: #f3f3f3;
     position: absolute;
     bottom: 0;
     width: 95%;

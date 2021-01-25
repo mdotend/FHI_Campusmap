@@ -18,7 +18,7 @@
                         poly.push([waypoint.fields.lat,waypoint.fields.long])
                     }
                 });
-                L.polygon(poly).addTo(map);
+                L.polygon(poly, {color: "#006C66", weight: 1.5,fillOpacity: 0.1}).addTo(map);
             }
         }
         var plant_points = "{{ plant_list }}";
