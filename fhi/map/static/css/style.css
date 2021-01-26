@@ -47,9 +47,10 @@ body {
 }
 
 .card-img-top {
-    border-radius: 0 0 50% 50%;    
-    max-height: 75rem;
-    height: auto;
+    border-radius: 0 0 50% 50%;
+    max-height: 200px;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .card-title {

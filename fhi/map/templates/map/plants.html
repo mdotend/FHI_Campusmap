@@ -12,7 +12,7 @@
       <div class="row gy-5">
           {% for plant in plant_types %}
               <div class="col-sm gx-5">
-                  <div class="card" id="{{ plant.name }}-card">
+                  <div class="card mb-2" id="{{ plant.name }}-card">
                       <img class="card-img-top" src="{% static 'plants/' %}{{ plant.name }}.jpg" alt="Card image cap">
                       <div class="card-body">
                         <h5 class="card-title">{{ plant.name }}</h5>
