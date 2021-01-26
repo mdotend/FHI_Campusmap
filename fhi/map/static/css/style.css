@@ -1,8 +1,11 @@
+:root {
+    --fhi-green: #006C66;
+}
+
 body {
     background-color: #FFFFFF;
     color:#4b4a4a;
     position: relative;
-    height: 100%;
 }
 
 .marged {
@@ -15,6 +18,7 @@ body {
     display:table;
     width:100%;
     margin: 0;
+    
 }
 .navbar-nav > li {
     float:none;
@@ -23,8 +27,11 @@ body {
     width: 50%;
 }
 
+.navbar-nav:hover {
+    color:inherit;
+}
 .tab_focused {
-    background-color: #006C66;
+    background-color: var(--fhi-green);
     color: #d1d1d1;
 }
 
@@ -35,10 +42,14 @@ body {
 
 .card {
     background: #eeeeee;
+    width: 18rem;
+    margin-bottom: 10px;
 }
 
 .card-img-top {
-    border-radius: 0 0 50% 50%;
+    border-radius: 0 0 50% 50%;    
+    max-height: 75rem;
+    height: auto;
 }
 
 .card-title {
@@ -48,30 +59,32 @@ body {
 .leaflet-container {
     width: 100%;
     padding-top: 90%;
-    /* height: 750pt; */
 }
 
 .card-focused {
     border: 10px;
     border-style: double;
-    border-color: #006C66;
+    border-color: var(--fhi-green);
 }
 
 .content {
     margin: 10px 25px;
-    /* border-style: none solid ;
-    border-color: #e0dfdf; */
     padding-bottom: 100px;
+}
+
+.leaflet-control-layers-selector {
+    color: var(--fhi-green);
 }
 
 .footer{
     padding: 10px 30px;
-    background: #006C66;
+    background: var(--fhi-green);
     color: #f3f3f3;
     position: absolute;
     bottom: 0;
     width: 95%;
 }
+
 a.invisble{
     color: inherit;
 }
@@ -82,4 +95,25 @@ a.invisble:visited {
 .column {
     float: left;
     width: 50%;
+}
+
+.btn-primary {
+    background-color: var(--fhi-green);
+    border-color: var(--fhi-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--fhi-green);
+    border-color: var(--fhi-green);
+}
+
+.btn-primary:active {
+    background-color: #003d3a;
+    border-color: #003d3a;
+    outline: none;
+}
+
+.btn-primary:focus {
+    background-color:#003d3a;
+    outline-color: #003d3a;
 }

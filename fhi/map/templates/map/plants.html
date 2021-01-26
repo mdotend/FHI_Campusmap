@@ -12,14 +12,15 @@
       <div class="row gy-5">
           {% for plant in plant_types %}
               <div class="col-sm gx-5">
-                  <div class="card" style="width: 18rem;" id="{{ plant.name }}-card">
+                  <div class="card" id="{{ plant.name }}-card">
                       <img class="card-img-top" src="{% static 'plants/' %}{{ plant.name }}.jpg" alt="Card image cap">
                       <div class="card-body">
                         <h5 class="card-title">{{ plant.name }}</h5>
                         <p class="card-text">{{ plant.short_description }}</p>
-                        <div class="row justify-content-center">
-                          <a href="../?display={{ plant.name }}" class="btn btn-primary marged">auf Karte</a>
-                          <a href="?name={{ plant.name }}" class="btn btn-primary marged">Mehr Infos</a>
+                        <div class="row justify-content-center marged">
+                          <a href="../?display={{ plant.name }}" class="btn btn-primary marged">zur Karte</a>
+                          <a href="{{ plant.wiki }}"><img style="width:50px;"src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png" alt="Wikipedia-logo-v2.svg"></a>
+                          <!-- <a href="?name={{ plant.name }}" class="btn btn-primary marged">Mehr Infos</a> -->
                         </div>
                       </div>
                   </div>
