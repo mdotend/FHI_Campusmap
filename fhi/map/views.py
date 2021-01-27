@@ -32,7 +32,7 @@ def map(request):
                     edit = True
     except:
         noQuery = True
-    waypoints = Waypoint.objects.filter(area__isnull=False)
+    area_points = Waypoint.objects.filter(area__isnull=False)
     plants = Waypoint.objects.filter(plant__isnull=False).select_related('plant')
     template = loader.get_template('map/map.html')
     plantlist = []
@@ -49,7 +49,7 @@ def map(request):
     context = {
         'max_area_id': Area.objects.filter().aggregate(Max('pk')).get("pk__max"),
         'max_planttype_id': PlantType.objects.filter().aggregate(Max('pk')).get("pk__max"),
-        'waypoint_list': serializers.serialize('json', waypoints),
+        'area_list': serializers.serialize('json', area_points),
         'plant_list': dumps(plantlist),
         'focus_plants': str(focus_plants),
         'newPlantForm': WaypointForm(),

@@ -10,10 +10,9 @@
   <body>
     <script src="{% static '/js/focuscontrol.js' %}"></script>
     <div class="container-md wrapper">
-      <!-- <div class="col-sm"></div> -->
       <div class="col-md-auto">
+        <!-- Navigationbar -->
         <nav class="navbar navbar-expand-md">
-          <!-- <a class="navbar-brand tab_focused navbar-nav" href="/">FHI Nachhaltigkeitskarte</a> -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,13 +23,14 @@
             </ul>
           </div>
         </nav>
-
+        <!--Contentblock-->
         <div id="content", name="content", class="content wrapper">
             <div class="row justify-content-center marged">
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
+        <!-- Footer block -->
         <footer class="mt-auto row footer marged">
           <div class="column col-sm-6" style="text-align: left;">
             <a class="invisble" href="/">Nutzpflanzenkarte</a></br>
@@ -43,9 +43,7 @@
         </footer>
       </div>
     </div>
-
-
-
+    <!-- import required js scripts for bootstrap -->
     <script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/popper.min.js' %}"></script>

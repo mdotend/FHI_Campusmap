@@ -8,8 +8,8 @@
     window.addEventListener("map:init", function (e) {
         var map = e.detail.map;  
         
-        var area_points = "{{ waypoint_list }}";
-        area_points = JSON.parse(area_points.replace(/&quot;/ig,'"'));
+        var area_points = "{{ area_list }}";
+        area_points = JSON.parse(area_points.replace(/&quot;/ig,'"')); //import and transform json
         if (area_points){
             for ( var i = 0; i<="{{ max_area_id }}"; i++){
                 poly = [];
@@ -54,7 +54,6 @@
             }
         }
         control.addTo(map);
-        console.log('{{ edit_mode }}')
         if ('{{ edit_mode }}' == "True"){
             L.easyButton('<b>X</b>', function(){
                 window.open("/", "_self");
@@ -101,11 +100,12 @@
         }
     }, false);
 </script>
+
 <head>
     {% leaflet_js %}
     {% leaflet_css %}
     <link rel="stylesheet" href="{% static '/css/easybutton.css' %}">
-    <title>FHI Nachhaltigkeitskarte</title>
+    <title>FHI Nutzpflanzenkarte</title>
 </head>
 
 <body>
