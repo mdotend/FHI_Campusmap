@@ -1,5 +1,5 @@
 # FHI Campusmap
-This project contains a web application, that displays the area of the FHI campus in Berlin, Germany and offers the possibility to add eadible plants on the grounds.
+This project contains a web application, that displays the area of the FHI campus in Berlin, Germany and offers the possibility to display edible plants on the grounds.
 The type of plants can be specified and assigned with further informations, pictures etc.
 The project uses the django webserver with an dockerized postgres db and the core functionality is based on the leaflet project.
 
